@@ -1,30 +1,19 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 def greet():
     print("|xxxxxxxxxxxxxxxxxxxx|")
     print("|  Добро пожаловать  |")
     print('|       в игру       |')
     print('|  _Крестики-нолики_ |')
+    print('|        X___O       |')
     print('|<<<<<<<<<<>>>>>>>>>>|')
     print('| Введите координаты |')
-    print('|       А и Б,       |')
+    print('| А и Б через пробел,|')
     print('|  займите 3 ячейки  |')
     print('|       в ряд        |')
     print('|  или по диагонали. |')
     print('|xxxxxxxxxxxxxxxxxxxx|')
 
 
-# In[ ]:
-
-
-table = [ [' '] * 3 for i in range(3)]
-
-
-# In[ ]:
+table = [[' '] * 3 for i in range(3)]
 
 
 def table_output():
@@ -36,14 +25,12 @@ def table_output():
         print(row_str)
         print('----------------')
     print()
-      
-
-
-# In[ ]:
 
 
 def request():
     while True:
+        a = None
+        b = None
         pos = input('Сделайте ход: ').split()
         if len(pos) != 2:
             print("Введите 2 координаты! ")
@@ -53,27 +40,24 @@ def request():
             print("Введите числа! ")
             continue
         
-        x, y = map(int, pos)
+        a, b = map(int, pos)
         
-        if x < 0 or x > 2 or y < 0 or y > 2:
+        if a < 0 or a > 2 or b < 0 or b > 2:
             print("Вы вышли за пределы поля! ")
             continue
         
-        if table[x][y] != ' ':
+        if table[a][b] != ' ':
             print("Ячейка занята! ")
             continue
         break
         
-    return x, y
-
-
-# In[ ]:
+    return a, b
 
 
 def win_rules():
     win_cond = (((0, 0), (0, 1), (0, 2)), ((1, 0), (1, 1), (1, 2)), ((2, 0), (2, 1), (2, 2)),
-               ((0, 0), (1, 0), (2, 0)), ((0, 1), (1, 1), (2, 1)), ((0, 2), (1, 2), (2, 2)),
-               ((0, 2), (1, 1), (2, 0)), ((0, 0), (1, 1), (2, 2))) 
+                ((0, 0), (1, 0), (2, 0)), ((0, 1), (1, 1), (2, 1)), ((0, 2), (1, 2), (2, 2)),
+                ((0, 2), (1, 1), (2, 0)), ((0, 0), (1, 1), (2, 2)))
     
     for row in win_cond:
         marks = []
@@ -88,10 +72,6 @@ def win_rules():
             print('Поздравляем. Выиграл Игрок №2!')
             return True
     return False      
-            
-
-
-# In[ ]:
 
 
 def replay():
@@ -100,11 +80,7 @@ def replay():
     return choice == "Да"          
 
 
-# In[ ]:
-
-
 greet()
-table = [ [' '] * 3 for i in range(3)]
 turn = 0
 while True:
     turn += 1
@@ -136,10 +112,3 @@ while True:
         turn = 0
         table = [[' '] * 3 for i in range(3)]
         replay()
-
-
-# In[ ]:
-
-
-
-
